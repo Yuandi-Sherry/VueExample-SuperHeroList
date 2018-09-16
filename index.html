@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SUPERHERO LIST</title>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<div id="app">
+  <h1>Superhero List</h1>
+  <router-view></router-view>
+</div>
+
+</body>
+<template id="mainPage">
+<div>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Power</th>
+			<th>Badass</th>
+			<th>Actions</th>
+		</tr>
+		<tr v-for="hero in heros">
+			<td><router-link :to="{ name: 'info', params: {hero_id:hero.Id}}">{{ hero.Name }}</router-link></td>
+			<td>{{ hero.Power }}</td>
+			<td>{{ hero.Badass }}</td>
+			<td>
+				<router-link :to="{ name: 'edit', params: { hero_id: hero.Id}}">Edit</router-link>/
+				<!--<router-link :to="/Delete">Delete</router-link>-->
+			</td>
+		</tr>
+	</table>
+</div>
+</template>
+
+
+<template id="editHero">
+<div>
+	
+	<h2>Edit Hero</h2>
+	<p>{{ hero.Name }}</p>
+	<input type="text" name="" placeholder="">
+	<p>Superpower</p>
+	<textarea>	
+	</textarea>
+	<p>Badass</p>
+	<input type="text" name="" placeholder="">
+</div>
+</template>
+
+
+
+<template id="infoHero">
+<div>
+	<h2>Info Hero</h2>
+	<p>Name</p>
+	<input type="text" disabled="true" placeholder="">
+
+	<p>Superpower</p>
+	<textarea>	
+	</textarea>
+
+</div>
+</template>
+<script type="text/javascript" src="index.js"></script>
+</html>
