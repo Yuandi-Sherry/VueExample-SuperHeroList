@@ -26,6 +26,8 @@ var heros = [
 	}
 ];
 
+var total = heros.length;
+
 var mainPage = {
 	template: '#mainPage',
 	data: function () {
@@ -37,23 +39,103 @@ var mainPage = {
 var  infoHero = {
 	template: '#infoHero',
 	data: function () {
-		return { hero: getHero( this.$route.params.hero_id)};
+		return { hero: heros[getIndex(this.$route.params.hero_id)]};
 	}
 };
 
 var  editHero = {
 	template: '#editHero',
 	data: function () {
-		return { hero: getHero(this.$route.params.hero_id)};
+		return { 
+			curHero: {
+				Name: heros[getIndex(this.$route.params.hero_id)].Name,
+				Power: heros[getIndex(this.$route.params.hero_id)].Power,
+				Badass: heros[getIndex(this.$route.params.hero_id)].Badass,
+			}
+			
+		};
+	},
+	methods: {
+		checkValidInput: checkValidInput,
+		editHero: function () {
+			if(this.curHero.Name == '') {
+				document.getElementById("nameField").style.display="inline";
+			}
+			else if(this.curHero.Power == '') {
+				document.getElementById("powerField").style.display="inline";
+			}
+			else {
+				heros[getIndex(this.$route.params.hero_id)].Name = this.curHero.Name;
+				heros[getIndex(this.$route.params.hero_id)].Power = this.curHero.Power;
+				heros[getIndex(this.$route.params.hero_id)].Badass = this.curHero.Badass;
+				router.push('/');
+			}			
+		}
 	}
 };
 
-function getHero(hero_id) {
-	for (var i = 0; i < heros.length; i++) {
-		if(heros[i].Id == hero_id) {
-			return heros[i];
+function checkValidInput() {
+	document.getElementById("nameField").style.display="none";
+	document.getElementById("powerField").style.display="none";
+}
+
+
+var  addHero = {
+	template: '#addHero',
+	data: function () {
+		return { tempHero: {
+			Id: total++,
+			Name: '',
+			Power: '',
+			Badass: 0
+		}};
+	},
+	methods: {
+		checkValidInput: checkValidInput,
+		addHero: function () {
+			var hero = this.tempHero;
+			if(hero.Name == '') {
+				document.getElementById("nameField").style.display="inline";
+			}
+			else if(hero.Power == '') {
+				document.getElementById("powerField").style.display="inline";
+			}
+			else {
+				heros.push({
+					Id: hero.Id,
+					Name: hero.Name,
+					Power: hero.Power,
+					Badass: hero.Badass
+				});
+				router.push('/');
+			}			
 		}
 	}
+};
+
+
+var deleteHero = {
+	template: '#deleteHero',
+	data: function () {
+		
+		return { hero: heros[getIndex(this.$route.params.hero_id)]};
+	},
+	methods: {
+		deleteHero: function () {
+			remove(this.$route.params.hero_id);
+			router.push('/');
+		}
+	}
+};
+function getIndex(hero_id) {
+	for (var i = 0; i < heros.length; i++) {
+		if(heros[i].Id == hero_id) {
+			return i;
+		}
+	}
+}
+function remove(hero_id) {
+	heros.splice(getIndex(hero_id),1);
 }
 
 const routes = [
@@ -65,7 +147,13 @@ const routes = [
   	component: infoHero },
   { path: '/edit/:hero_id', 
   	name: "edit",
-  	component: editHero }
+  	component: editHero },
+  { path: '/delete/:hero_id', 
+  	name: "delete",
+  	component: deleteHero },
+  { path: '/addHero', 
+  	name: "addHero",
+  	component: addHero }
 ];
 
 

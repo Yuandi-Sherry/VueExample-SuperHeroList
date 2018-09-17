@@ -1,0 +1,247 @@
+/*
+ * main frame
+ */
+
+body {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	font-family: 'Montserrat', 'Arial', sans-serif;
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+	max-width: 700px;
+	background: #f4f4f4;
+	box-shadow: 0px 0px 10px #E5E5E5;
+}
+
+#app {
+	padding-top: 20px;
+	background-color: white;
+	border-radius: 5px;
+	box-shadow: 30px;
+}
+
+.content {
+	text-align: center;
+	color: black;
+	padding-bottom: 60px;
+}
+
+hr {
+	width: 435px;
+	border-width: 0.1px;
+	border-style: solid;
+	border-color: #E5E5E5;
+	height: 1px;
+	background-color: #E5E5E5;
+}
+
+/*
+ * detailed text
+ */
+
+.bolder {
+	font-weight: bolder;
+}
+
+.title {
+	font-weight: normal;
+	text-align: center;
+	font-size: 40px;
+	margin-bottom: 0px;
+
+}
+
+/* 
+ * main Page
+ */
+
+.content th, .content td {
+	text-align: left;
+	padding: 5px;
+}
+
+table {
+	border-collapse: collapse;
+	margin-top: 40px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 88%;
+	font-size: 18px;
+}
+
+tr {
+	width: 90%;
+    height: 60px;
+    border-bottom: 1px #E5E5E5 solid;
+}
+
+td {
+	padding: 10px;
+}
+
+.canHover:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+    transition: 0.3s;
+}
+
+tr a:visited {
+	color: black;
+	text-decoration: underline;
+	text-decoration-color: #E5E5E5;
+}
+
+tr a:hover {
+	color: #f04;
+	text-decoration-color: #f04;
+	transition: 0.2s;
+}
+
+/* 
+ * button
+ */
+.routerBtn {
+	margin-right: auto;
+	margin-left: auto;
+	display:block; 
+	text-decoration: none;
+	width: 90%;
+	height: 30px;
+	padding-top: 10px;
+	border-radius: 5px;
+	border-style: none;
+	margin-top: 20px;
+	font-family: 'Montserrat', 'Arial', sans-serif;
+	font-size: 18px;
+	font-weight: bolder;
+	text-align: center;
+}
+
+.btn {
+	text-decoration: none;
+	width: 90%;
+	height: 40px;
+	border-radius: 5px;
+	border-style: none;
+	margin-top: 20px;
+	font-family: 'Montserrat', 'Arial', sans-serif;
+	font-size: 18px;
+	font-weight: bolder;
+	text-align: center;
+}
+
+.yes {
+	background-color: #4444AA; 
+	color: white;
+}
+
+.yes:hover {
+	background-color: #f04; 
+	transition: 0.2s;
+}
+
+.no {
+	background-color: white;
+	color: black;
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+}
+
+.no:hover {
+	color: #f04;
+	border-color: #f04;
+	transition: 0.2s;
+}
+
+.back {
+	font-weight: normal;
+	color: black;
+	text-decoration: underline;
+	text-decoration-color:#E5E5E5; 
+}
+
+
+.back:hover {
+	color: #f04;
+	text-decoration-color:#f04; 
+	transition: 0.2s;
+}
+
+/*
+ * edit, add 
+ */
+form p {
+	font-size: 18px;
+	font-weight: bold;
+	text-align: left;
+	margin-left: 5%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+textarea {
+	height: 210px;
+}
+
+input {
+	height: 30px;
+}
+
+textarea, input {
+	font-family: 'Montserrat', 'Arial', sans-serif;
+	font-size: 18px;
+	width: 90%;
+	margin: 0px 5% 10px 5%;
+}
+
+/*
+ * info
+ */
+.subtitle{
+	font-weight: normal;
+	font-size: 32px;
+	text-align: center;
+}
+
+.info {
+	text-align: left;
+	width: 40%;
+	margin-left: 30%;
+	font-size: 20px;
+}
+
+/*
+ * delete
+ */
+ .delete {
+ 	width: 90%;
+ 	margin-left: auto;
+ 	margin-right: auto;
+ 	text-align: left;
+ }
+
+ .delete p{
+ 	font-weight: normal;
+ }
+
+ /* 
+  * hint
+  */
+.hint {
+	float: left;
+	position: absolute;
+	font-size: 14px;
+	width: 100px;
+	font-weight: normal;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	border: solid 1px black;
+	border-radius: 3px;
+	padding: 5px;
+	left: 50%;
+	margin-left: -50px;
+	margin-top: -10px;
+	display: none;
+}

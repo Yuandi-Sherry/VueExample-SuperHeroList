@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SUPERHERO LIST</title>
+	<title>Superheroes List</title>
 	<script src="https://unpkg.com/vue/dist/vue.js"></script>
 	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+	<link rel="stylesheet" type="text/css" href="index.css">
 </head>
+<body>
 <div id="app">
-  <h1>Superhero List</h1>
+  <h1 class="title"><span class="bolder">Superheroes</span> list</h1>
+  <hr>
   <router-view></router-view>
 </div>
-
 </body>
 <template id="mainPage">
-<div>
+<div class="content">
 	<table>
 		<tr>
 			<th>Name</th>
@@ -20,46 +22,78 @@
 			<th>Badass</th>
 			<th>Actions</th>
 		</tr>
-		<tr v-for="hero in heros">
+		<tr class="canHover" v-for="hero in heros">
 			<td><router-link :to="{ name: 'info', params: {hero_id:hero.Id}}">{{ hero.Name }}</router-link></td>
 			<td>{{ hero.Power }}</td>
 			<td>{{ hero.Badass }}</td>
 			<td>
 				<router-link :to="{ name: 'edit', params: { hero_id: hero.Id}}">Edit</router-link>/
-				<!--<router-link :to="/Delete">Delete</router-link>-->
+				<router-link :to="{ name: 'delete', params: { hero_id: hero.Id}}">Delete</router-link>
 			</td>
 		</tr>
 	</table>
+	<router-link :to="{name: 'addHero'}" class="routerBtn yes">Add Superhero</router-link>
 </div>
 </template>
 
 
 <template id="editHero">
-<div>
-	
-	<h2>Edit Hero</h2>
-	<p>{{ hero.Name }}</p>
-	<input type="text" name="" placeholder="">
-	<p>Superpower</p>
-	<textarea>	
-	</textarea>
-	<p>Badass</p>
-	<input type="text" name="" placeholder="">
+<div class="content">
+	<form @submit.prevent='editHero'>
+		<h2 class="subtitle">Edit Hero</h2>
+		<p>Name</p>
+		<input v-model="curHero.Name" type="text" @click.capture="checkValidInput">
+		<p class="hint" id="nameField">请填写此字段！</p>
+		<p>Superpower</p>
+		<textarea v-model="curHero.Power" @click.capture="checkValidInput"></textarea>
+		<p class="hint" id="powerField">请填写此字段！</p>
+		<p>Badass</p>
+		<input type="number" min="0" name=""  v-model="curHero.Badass">
+		<button type="submit" class="btn yes">Update</button>
+		<router-link :to="{name: 'mainPage'}" class="routerBtn no">Cancel</router-link>	
+	</form>
 </div>
 </template>
 
-
+<template id="addHero">
+<div class="content">
+	<h2 class="subtitle">Add Superhero</h2>
+	<form @submit.prevent="addHero">
+		<p>Name</p>
+		<input v-model="tempHero.Name" type="text" @click.capture="checkValidInput">
+		<p class="hint" id="nameField">请填写此字段！</p>
+		<p>Power</p> 
+		<textarea v-model="tempHero.Power" @click.capture="checkValidInput"></textarea>
+		<p class="hint" id="powerField">请填写此字段！</p>
+		<p>Badass</p>
+		<input type="number" min="0" v-model="tempHero.Badass">
+		<button type="submit" class="btn yes">Create</button>
+		<router-link :to="{name: 'mainPage'}" class="routerBtn no">Cancel</router-link>
+	</form>
+</div>
+</template>
 
 <template id="infoHero">
-<div>
-	<h2>Info Hero</h2>
-	<p>Name</p>
-	<input type="text" disabled="true" placeholder="">
+<div class="content">
+	<p class="bolder subtitle"> {{ hero.Name }}</p>
+	<div class="info">
+		<p><span class="bolder">Power: </span>{{ hero.Power }}</p>
+		<p><span class="bolder">Badass: </span>{{ hero.Badass }}</p>
+	</div>
+	<router-link :to="{name: 'mainPage'}" class="routerBtn back">Back</router-link>
+</div>
+</template>
 
-	<p>Superpower</p>
-	<textarea>	
-	</textarea>
-
+<template id="deleteHero">
+<div class="content">
+	<form @submit.prevent="deleteHero">
+		<p class="subtitle">Delete <span class="bolder">{{ hero.Name }}</span>?</p>
+		<div class="delete">
+			<p>Are You sure? You want to delete <span class="bolder">{{ hero.Name }}</span> from this Universe? He will be very upset...</p>
+		</div>
+		<button type="submit" class="btn yes">Delete</button>
+		<router-link :to="{name: 'mainPage'}" class="routerBtn no">Cancel</router-link>	
+	</form>
 </div>
 </template>
 <script type="text/javascript" src="index.js"></script>
